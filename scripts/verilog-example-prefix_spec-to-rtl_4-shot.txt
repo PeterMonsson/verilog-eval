@@ -194,9 +194,27 @@ module TopModule
   always @(*) begin
     state_next = state;
     case ( state )
-      STATE_A: state_next = ( in_ ) ? STATE_B : STATE_A;
-      STATE_B: state_next = ( in_ ) ? STATE_C : STATE_A;
-      STATE_C: state_next = ( in_ ) ? STATE_C : STATE_A;
+      STATE_A: begin
+        if ( in_ ) begin
+          state_next = STATE_B;
+        end else begin
+          state_next = STATE_A;
+        end
+      end
+      STATE_B: begin
+        if ( in_ ) begin
+          state_next = STATE_C;
+        end else begin
+          state_next = STATE_A;
+        end
+      end
+      STATE_C:  begin
+        if ( in_ ) begin
+          state_next = STATE_C;
+        end else begin
+          state_next = STATE_A;
+        end
+      end
     endcase
   end
 
