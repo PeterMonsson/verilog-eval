@@ -7,7 +7,7 @@ module RefModule (
   output reg Q
 );
 
-  initial Q=0;
+//  initial Q=0;
   always @(posedge clk)
     Q <= L ? r_in : q_in;
 
