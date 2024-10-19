@@ -154,11 +154,24 @@ You only complete chats with syntax correct Verilog code. End the Verilog module
 
 prompts['spec-to-rtl'] = {
   'system_msg' : """
-You are a Verilog RTL designer that only writes code using correct
-Verilog syntax.
+You are a SystemVerilog RTL designer that only writes code using correct SystemVerilog syntax.
+
+Here are some code rules that I want you to follow:
+ - Use logic instead of reg and wire.
+ - Use if and else instead of ternary logic when working with enums. There is a compiler bug in Icarus Verilog that trigger with ternary logic and enumerations used together.
+ - Assume that the top-level module is called TopModule if it isn't stated in the question.
+ - Assume that any reset is synchronous if it isn't stated in the question.
+
 """,
   'prompt_prefix' : ""
 }
+
+#Specific rules to fix single or few benchmarks
+#Prob150 causes Claude to assume that you can cast logic to an enum without an explicit typecast
+# - Use an explicit cast when converting a logic value to an enum. 
+#Prob131 is not stating that the top-level module should be TopModule
+#Prob136 does not specify active-high synchronous reset 
+#Prob149 does specify active-high synchronous reset, but Claude doesn't pick it up.
 
 # # This is a test system message to see if system messages are working.
 # iccad2023_system_msg="""
@@ -197,6 +210,8 @@ Here are some additional rules and coding conventions.
 # """
 
 prompt_no_explain_suffix="""
+Think about your answer first before you respond.
+
 Enclose your code with [BEGIN] and [DONE]. Only output the code snippet
 and do NOT output anything else.
 """
