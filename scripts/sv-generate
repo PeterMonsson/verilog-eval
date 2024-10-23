@@ -85,6 +85,7 @@ openai_models = [
 
 anthropic_models = [
   "claude-3-5-sonnet-20240620",
+  "claude-3-5-sonnet-20241022",
 ]
 
 nim_chat_models = [
@@ -112,7 +113,8 @@ model_aliases = {
   "ai-llama-3_1-8b-instruct": "meta/llama-3.1-8b-instruct",
   "ai-llama-3_1-70b-instruct": "meta/llama-3.1-70b-instruct",
   "ai-llama-3_1-405b-instruct": "meta/llama-3.1-405b-instruct",
-  "claude-3.5-sonnet": "claude-3-5-sonnet-20240620"
+  "claude-3.5-sonnet": "claude-3-5-sonnet-20240620",
+  "claude-3.5-sonnet-new": "claude-3-5-sonnet-20241022"
 }
 
 models_to_repeat_system_to_human_messages = [
